@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     void Update()
     {
         Rigidbody rigidbody = this.GetComponent<Rigidbody>();
-        rigidbody.AddForce(new Vector3(0.0f, 0.0f, Speed));
+        float forceZ = Input.GetAxis("Vertical") * Speed;
+        rigidbody.AddForce(new Vector3(0.0f, 0.0f, forceZ));
     }
 }
