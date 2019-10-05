@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     public float Speed;
+    public float angularVelocity = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,10 @@ public class CarController : MonoBehaviour
     {
         Rigidbody rigidbody = this.GetComponent<Rigidbody>();
         float forceZ = Input.GetAxis("Vertical") * Speed;
-        rigidbody.AddForce(new Vector3(0.0f, 0.0f, forceZ));
+        float angularY = Input.GetAxis("Horizontal") * angularVelocity;
+        rigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, forceZ));
+        rigidbody.angularVelocity = new Vector3(0, angularY, 0);
+
+
     }
 }
