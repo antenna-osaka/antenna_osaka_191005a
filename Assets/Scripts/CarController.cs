@@ -16,12 +16,12 @@ public class CarController : MonoBehaviour
     void Update()
     {
         Rigidbody rigidbody = this.GetComponent<Rigidbody>();
-        float forceZ = Input.GetAxis("Vertical") * Speed;
+        float forceZ = Input.GetAxis("Vertical") * Speed* rigidbody.mass;
         
         float localSpeedZ = (Quaternion.Inverse(this.transform.rotation) * rigidbody.velocity).z;
         float angularY = Input.GetAxis("Horizontal") * angularVelocity * localSpeedZ;
         rigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, forceZ));
-        rigidbody.angularVelocity = new Vector3(0, angularY, 0);
+        rigidbody.angularVelocity = new Vector3(rigidbody.angularVelocity.x,angularY, rigidbody.angularVelocity.z);
 
 
     }
